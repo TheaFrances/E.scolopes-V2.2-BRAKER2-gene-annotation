@@ -1,1 +1,1 @@
-Euprymna scolopes gene annotation for V2 genome (after sci data revision)
+Euprymna scolopes gene annotation for V2 genome (after Sci Data revision)
