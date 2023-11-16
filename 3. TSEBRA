@@ -1,0 +1,22 @@
+#Followed part of this: https://github.com/Gaius-Augustus/BRAKER/blob/master/docs/long_reads/long_read_protocol.md#genemarks-t
+#Use TSEBRA to select gene models from Iso-Seq and BRAKER2 models.
+
+#Run GeneMarkS-T to predict protein-coding regions in the transcripts
+	python stringtie2fa.py -g Lachesis_assembly.fasta -f merged_isoseq_scolopes_collapse.gff -o collapsed.fa
+
+#Download gmst and run
+	
+	./gmst.pl --strand direct collapsed.fa.mrna --output gmst.out --format GFF
+
+#Use the GeneMarkS-T coordinates and the long-read transcripts to create a gene set in GTF format.
+	
+	gmst2globalCoords.py -t merged_isoseq_scolopes_collapse.gff -p gmst.out -o gmst.global.gtf -g Lachesis_assembly.fasta
+
+#Download TSEBRA and run TSEBRA to pick gene models
+
+	./TSEBRA/bin/tsebra.py -g augustus.hints_utr.gtf,gushr.gtf,belcaid.cds.gtf -e hintsfile.gff -c default.config -l gmst.global.gtf -o tsebra_withGushr_longread.gtf
+
+#Note:
+#TSEBRA transcript selected file made with long reads and BRAKER2 annotation: tsebra_withGushr_longread.gtf
+#Final file can be found on on GitHub but not used in final annotation because BUSCO scores decreased.
+

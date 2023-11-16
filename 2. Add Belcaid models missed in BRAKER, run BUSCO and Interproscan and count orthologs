@@ -1,0 +1,68 @@
+#Add non single-exon (high confidence) Belcaid models missed in BRAKER to new BRAKER dataset
+
+#Obtain high confidence BRAKER CDS exons only
+
+	grep "\sCDS\s" gushr_formatted.gtf | awk ' { if ($6==1) { print } } ' > gushr_formatted.cds_prob.gtf
+
+#Intersect with Belcaid GMAP mapping
+
+	module load bedtools
+
+	bedtools intersect -v -a  belcaid.cds.gff -b  gushr_formatted.cds_prob.gtf > belcaid.unique.cds_prob.gff
+
+#Create non-overlapping (more than 75% of exons unique) and multi-exon Belcaid genes
+
+	module load perl
+
+	perl obtainBelcaidGeneList3.pl belcaid.unique.cds_prob.gff belcaid.cds.gff belcaid.unique.complete.nosingleexon.gff 0.75 > belcaid.unique.nosingleexon.ids
+
+#Format and concatenate gene sets, produce protein and CDS fasta
+	
+	module load gffread
+
+	gffread -T belcaid.unique.complete.nosingleexon.gff > belcaid.unique.complete.nosingleexon.gtf
+
+	cat gushr.fixed.gtf belcaid.unique.complete.nosingleexon.gtf > models_v2.nosingleexon.gtf
+
+	gffread -g Lachesis_assembly.fasta -y  models_v2_nosingleexon_prot.fa -x models_v2_nosingleexon_cds.fa models_v2_nosingleexon.gtf
+
+#Run BUSCO
+
+	conda activate busco-5.4.5
+
+	busco -f -i models_v2.nosingleexon_prot.fa  -m protein -c16 -l metazoa_odb10 -o busco_models_v2
+
+#Run Interproscan
+
+	module load java
+	module load python3
+
+	interproscan-5.62-94.0/interproscan.sh -i  models_v2.nosingleexon_prot.fa  -cpu 12  -b /interproscan_output
+
+#Run orthofinder on directories with annotation and protein files.
+
+	module load orthofinder
+
+	orthofinder.py  -t 16 -f eup_dpe #Euprymna scolopes
+
+	orthofinder.py  -t 16 -f eup_obi #Octopus bimaculoides
+
+	orthofinder.py  -t 16 -f eup_pmax2 #Pecten maximus
+
+
+#Count orthogroups
+
+	awk '$2>0 && $3>0' /eup_dpe/OrthoFinder/Results_Nov14/Orthogroups/Orthogroups.GeneCount.tsv | wc -l
+
+	awk '$2>0 && $3>0' /eup_obi/OrthoFinder/Results_Nov14/Orthogroups/Orthogroups.GeneCount.tsv | wc -l
+
+	awk '$2>0 && $3>0' /eup_pmax2/OrthoFinder/Results_Nov14/Orthogroups/Orthogroups.GeneCount.tsv | wc -l
+
+
+
+#Renamed gtf, CDS and protein files to:
+eupsc_models_v2.2.gtf
+
+eupsc_models_v2.2_cds.fa
+
+eupsc_models_v2.2_prot.fa

@@ -1,0 +1,87 @@
+Iso-Seq processing pipeline. Following this: https://isoseq.how/getting-started.html
+
+
+#Demultiplexing. The data obtained from the Vienna Biocenter Core Facility were produced by the command below.
+
+	conda activate lima-2.7.1
+
+	lima --ccs --min-score 45 $SCORE --same --store-unbarcoded   ${reads_bam} ${barcodes_Isoseq_Multiplex_v2} ${demux_reads}.bam;
+
+ #Get full length reads i.e. remove primers. 
+
+	lima m64046_221216_145151.1_1_213869.subreads.bam isoseq_primer.fasta213869.fl.bam  --isoseq --peek-guess
+
+	ilma m64046_221216_145151.2_2_213870.subreads.bam isoseq_primer.fasta213870.fl.bam  --isoseq --peek-guess
+
+	lima m64046_221216_145151.3_3_213871.subreads.bam isoseq_primer.fasta213871.fl.bam  --isoseq --peek-guess
+
+	lima m64046_221216_145151.4_4_213872.subreads.bam isoseq_primer.fasta213872.fl.bam  --isoseq --peek-guess
+
+	lima m64046_221216_145151.5_5_213873.subreads.bam isoseq_primer.fasta 213873.fl.bam  --isoseq --peek-guess
+
+	lima m64046_221216_145151.6_6_213874.subreads.bam isoseq_primer.fasta213874.fl.bam  --isoseq --peek-guess
+
+
+#Refine. Trim polyA tails and identify concatemers and remove. 
+
+	conda activate isoseq3-3.8.1
+
+	isoseq3 refine  213869.fl.consensusreadset.xml isoseq_primer.fasta 213869.flnc.bam --require-polya 
+
+	isoseq3 refine  213870.fl.consensusreadset.xml isoseq_primer.fasta 213870.flnc.bam --require-polya 
+
+	isoseq3 refine  213871.fl.consensusreadset.xml isoseq_primer.fasta 213871.flnc.bam --require-polya
+
+	isoseq3 refine  213872.fl.consensusreadset.xml isoseq_primer.fasta 213872.flnc.bam --require-polya 
+
+	isoseq3 refine  213873.fl.consensusreadset.xml isoseq_primer.fasta 213873.flnc.bam --require-polya 
+
+	isoseq3 refine  213874.fl.consensusreadset.xml isoseq_primer.fasta 213874.flnc.bam --require-polya
+
+
+#Everything was on one SMRTcell so no need to merge SMRTcells. Instead, move straight onto clustering.
+
+	isoseq3 cluster  213869.flnc.bam 213869_clustered.bam --verbose --use-qvs
+
+	isoseq3 cluster  213870.flnc.bam 213870_clustered.bam --verbose --use-qvs
+
+	isoseq3 cluster  213871.flnc.bam 213871_clustered.bam --verbose --use-qvs
+
+	isoseq3 cluster  213872.flnc.bam 213872_clustered.bam --verbose --use-qvs
+
+	isoseq3 cluster  213873.flnc.bam 213873_clustered.bam --verbose --use-qvs
+
+	isoseq3 cluster  213874.flnc.bam 213874_clustered.bam --verbose --use-qvs
+
+#Map Iso-Seq data using PacBio Minimap 2 which is recommended, see: See https://isoseq.how/classification/isoseq-collapse.html
+
+	conda activate pb-assembly-0.0.8/
+
+	pbmm2 align --preset ISOSEQ --sort 213869_clustered.bam Lachesis_assembly.fasta 213869.pbmm2.sorted.bam
+
+	pbmm2 align --preset ISOSEQ --sort 213870_clustered.bam Lachesis_assembly.fasta 213870.pbmm2.sorted.bam
+
+	pbmm2 align --preset ISOSEQ --sort 213871_clustered.bam Lachesis_assembly.fasta 213871.pbmm2.sorted.bam
+
+	pbmm2 align --preset ISOSEQ --sort 213872_clustered.bam Lachesis_assembly.fasta 213872.pbmm2.sorted.bam
+
+	pbmm2 align --preset ISOSEQ --sort 213873_clustered.bam Lachesis_assembly.fasta 213873.pbmm2.sorted.bam
+
+	pbmm2 align --preset ISOSEQ --sort 213874_clustered.bam Lachesis_assembly.fasta 213874.pbmm2.sorted.bam
+
+
+#Merge BAMs
+
+	module load samtools
+
+	samtools merge -o merged_isoseq_scolopes.bam 213869.pbmm2.sorted.bam 213870.pbmm2.sorted.bam 213871.pbmm2.sorted.bam 213872.pbmm2.sorted.bam 213873.pbmm2.sorted.bam 213874.pbmm2.sorted.bam
+
+#Collapse into unique isoforms
+
+	conda activate isoseq3-3.8.2
+
+	isoseq3 collapse --do-not-collapse-extra-5exons merged_isoseq_scolopes.bam  merged_isoseq_scolopes_collapse.gff
+
+
+
+
