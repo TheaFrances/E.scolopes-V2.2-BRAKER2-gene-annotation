@@ -19,4 +19,3 @@
 #Note:
 #TSEBRA transcript selected file made with long reads and BRAKER2 annotation: tsebra_withGushr_longread.gtf
 #Final file can be found on on GitHub but not used in final annotation because BUSCO scores decreased.
-
