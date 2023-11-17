@@ -1,0 +1,38 @@
+
+#Run BRAKER2 on E. scolopes Iso-Seq, RNA-seq and other species protein files. Submit as slurm job. Script available on github
+
+	sbatch braker2_eupsc_prot_rnaseq_isoseq.sh 
+
+
+#Add UTRs using BRAKER2. Submit to slurm. Script avaliable on GitHub
+
+	sbatch braker2_eupsc_isoseq_utron.sh 
+
+
+#Fix formatting of gushr output gtf to make it appropriate for the genome broswer and to fix any other issues with BRAKER2 formatting that would cause problems in downstream commands. fix_gtf_ids.py and rename_gtf.py are from TSEBRA, see https://github.com/Gaius-Augustus/BRAKER/issues/453
+
+	#First fix the problem that the gff is a mixture of genemark/augustus format
+	fix_gtf_ids.py --gtf gushr.gtf --out gushr_fixed.gtf
+
+	#Secondly, add the missing gene tag. This script is from TSEBRA, see
+	rename_gtf.py --gtf gushr_fixed.gtf --out gushr_fixed2.gtf
+
+	#Use custom perl script which should make file more suitable for jbrowse. Script available on GitHub
+	 perl convertBraker2Gff.pl gushr_fixed2.gtf > gushr_formatted.gtf
+
+#Extract CDS and proteins
+
+	module load gffread
+
+	gffread -x gushr_form_cds.fa -g Lachesis_assembly.fasta gushr_formatted.gtf
+
+	gffread -y gushr_form_prot.fa -g Lachesis_assembly.fasta gushr_formatted.gtf 
+
+
+#Run BUSCO for protein files to assess completeness of gene prediction
+
+	module load conda
+	
+ 	conda activate busco-5.4.5
+
+ 	busco -i gushr_form_prot.fa -l metazoa -o eupsc_annot_busco_prot -m protein
