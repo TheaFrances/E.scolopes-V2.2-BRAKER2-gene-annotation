@@ -37,9 +37,14 @@
 	module load java
 	module load python3
 
-	interproscan-5.62-94.0/interproscan.sh -i  models_v2.nosingleexon_prot.fa  -cpu 12  -b /interproscan_output
+	interproscan-5.62-94.0/interproscan.sh -i  models_v2.nosingleexon_prot.fa  -cpu 12  -b ./interproscan_output
 
-#Run orthofinder on directories with annotation and protein files.
+
+#Count single exon genes and how many are annotated in interproscan
+
+	countExonPerGene.pl models_v2.nosingleexon.gff interproscan.tsv
+
+#Run orthofinder on directories with annotation and protein files
 
 	module load orthofinder
 
@@ -61,6 +66,7 @@
 
 
 #Renamed gtf, CDS and protein files to:
+
 eupsc_models_v2.2.gtf
 
 eupsc_models_v2.2_cds.fa
