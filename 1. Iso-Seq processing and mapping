@@ -81,7 +81,3 @@ Iso-Seq processing pipeline. Following this: https://isoseq.how/getting-started.
 	conda activate isoseq3-3.8.2
 
 	isoseq3 collapse --do-not-collapse-extra-5exons merged_isoseq_scolopes.bam  merged_isoseq_scolopes_collapse.gff
-
-
-
-
