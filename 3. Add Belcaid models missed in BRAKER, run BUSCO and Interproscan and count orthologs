@@ -1,3 +1,4 @@
+
 #Add non single-exon (high confidence) Belcaid models missed in BRAKER to new BRAKER dataset
 
 #Obtain high confidence BRAKER CDS exons only
@@ -27,20 +28,21 @@
 	gffread -g Lachesis_assembly.fasta -y  models_v2_nosingleexon_prot.fa -x models_v2_nosingleexon_cds.fa models_v2_nosingleexon.gtf
 
 #Run BUSCO
-
+	
+	module load conda
 	conda activate busco-5.4.5
 
-	busco -f -i models_v2.nosingleexon_prot.fa  -m protein -c16 -l metazoa_odb10 -o busco_models_v2
+	busco -f -i models_v2.nosingleexon_prot.fa  -m protein -c16 -l metazoa_odb10 -o eupsc_annot_busco_prot_models_v2
 
 #Run Interproscan
 
 	module load java
-	module load python3
 
 	interproscan-5.62-94.0/interproscan.sh -i  models_v2.nosingleexon_prot.fa  -cpu 12  -b ./interproscan_output
 
-
 #Count single exon genes and how many are annotated in interproscan
+
+	module load perl
 
 	countExonPerGene.pl models_v2.nosingleexon.gff interproscan.tsv
 
@@ -65,10 +67,12 @@
 
 
 
-#Renamed gtf, CDS and protein files to:
+#Renamed gtf, CDS, protein, interproscan files to:
 
-eupsc_models_v2.2.gtf
+	eupsc_models_v2.2.gtf
 
-eupsc_models_v2.2_cds.fa
+	eupsc_models_v2.2_cds.fa
 
-eupsc_models_v2.2_prot.fa
+	eupsc_models_v2.2_prot.fa
+
+	eupsc_models_v2.2_interproscan.tsv
