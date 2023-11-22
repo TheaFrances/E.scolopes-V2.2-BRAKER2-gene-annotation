@@ -1,6 +1,6 @@
 Euprymna scolopes gene annotation for V2 genome (after Sci Data revision)
 
-This repo contains the gene annotation (new BRAKER2 models, combined with some genes from Belcaid et al. 2019) for the Hawaiian bobtail squid, Euprymna scolopes genome (Schmidbauer et al., 2023). It is part of the following manuscript, in revision at Scientific data: Towards a comprehensive gene annotation for the Hawaiian bobtail squid, Euprymna scolopes. Thea F. Rogers, Gözde Yalçın, John Briseno, Nidhi Vijayan, Spencer V. Nyholm, Oleg Simakov.
+This repo contains the gene annotation (new BRAKER2 models, combined with some genes from Belcaid et al. 2019) for the Hawaiian bobtail squid, Euprymna scolopes genome (Schmidbaur et al., 2022). It is part of the following manuscript, in revision at Scientific data: Towards a comprehensive gene annotation for the Hawaiian bobtail squid, Euprymna scolopes. Thea F. Rogers, Gözde Yalçın, John Briseno, Nidhi Vijayan, Spencer V. Nyholm, Oleg Simakov.
 
 The annotation files are as follows:
 eupsc_models_v2.2.gtf #Gene annotation GTF
@@ -13,7 +13,7 @@ List of commands used to generate the annotation can be found in these files:
 2. Run BRAKER2, format output and run BUSCO
 3. Add Belcaid models missed in BRAKER, run BUSCO and Interproscan and count orthologs
 
-TSEBRA was also run to select the best genes from Iso-Seq data and BRAKER2 models as suggested by reviewer 2. However, this decreased BUSCO completeness scores so was not used in the final annotation. The commands run, and gtf output (for reviewers) can be found here:
+TSEBRA was also run to select the best genes from Iso-Seq data and BRAKER2 models as suggested by reviewer 2. However, this decreased BUSCO completeness scores so was not used in the final annotation. The commands run, and gtf output from TSEBRA (for reviewers only) can be found here:
 4. TSEBRA
 tsebra_withGushr_longread.gtf
 
