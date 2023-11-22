@@ -56,7 +56,6 @@
 
 	orthofinder.py  -t 16 -f eup_pmax2 #Pecten maximus
 
-
 #Count orthogroups
 
 	awk '$2>0 && $3>0' /eup_dpe/OrthoFinder/Results_Nov14/Orthogroups/Orthogroups.GeneCount.tsv | wc -l
@@ -64,8 +63,6 @@
 	awk '$2>0 && $3>0' /eup_obi/OrthoFinder/Results_Nov14/Orthogroups/Orthogroups.GeneCount.tsv | wc -l
 
 	awk '$2>0 && $3>0' /eup_pmax2/OrthoFinder/Results_Nov14/Orthogroups/Orthogroups.GeneCount.tsv | wc -l
-
-
 
 #Renamed gtf, CDS, protein, interproscan files to:
 
