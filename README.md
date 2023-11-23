@@ -14,7 +14,7 @@ eupsc_models_v2.2_interproscan.tsv #Protein annotation
 2. Run BRAKER2, format output and run BUSCO  
 3. Add Belcaid models missed in BRAKER, run BUSCO and Interproscan and count orthologs  
   
-TSEBRA was also run to select the best genes from Iso-Seq data and BRAKER2 models as suggested by reviewer 2. However, this decreased BUSCO completeness scores so was not used in the final annotation. **The commands run, and gtf output from TSEBRA (for reviewers only) can be found here**:  
+TSEBRA was also run to select the best genes from Iso-Seq data and BRAKER2 models as suggested by reviewer 2. However, this decreased BUSCO completeness scores so was not used as the final annotation. **The commands run, and gtf output from TSEBRA (for reviewers only, do not use as annotation) can be found here**:  
   
 4. TSEBRA  
 tsebra_withGushr_longread.gtf  
