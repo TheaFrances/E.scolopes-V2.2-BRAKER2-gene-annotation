@@ -7,7 +7,8 @@ This repo contains the gene annotation (new BRAKER2 models, combined with some g
 eupsc_models_v2.2.gtf #Gene annotation GTF  
 eupsc_models_v2.2_cds.fa #Coding sequence file  
 eupsc_models_v2.2_prot.fa #Protein sequence file  
-eupsc_models_v2.2_interproscan.tsv #Protein annotation  
+eupsc_models_v2.2_interproscan.tsv #Protein annotation
+eupsc_models_v2.2.tags.gtf #Same gene annotation gtf as eupsc_models_v2.2.gtf but with explicit exon lines
   
 **List of commands used to generate the annotation can be found in these files:**  
 1. Iso-Seq processing and mapping  
