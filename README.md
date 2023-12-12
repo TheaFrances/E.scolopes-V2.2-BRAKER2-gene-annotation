@@ -16,9 +16,9 @@ eupsc_models_v2.2.tags.gtf #Same gene annotation gtf as eupsc_models_v2.2.gtf bu
 3. Add Belcaid models missed in BRAKER, run BUSCO and Interproscan and count orthologs  
   
 TSEBRA was also run to select the best genes from Iso-Seq data and BRAKER2 models as suggested by reviewer 2. However, this decreased BUSCO completeness scores so was not used as the final annotation. **The commands run, and gtf output from TSEBRA (for reviewers only) can be found here**:  
-  
+
+tsebra_withGushr_longread.gtf #Do not use as gene annotation file, has less complete BUSCO scores than the gtfs above  
 4. TSEBRA  
-tsebra_withGushr_longread.gtf #Do not use as gene annotation file, has less complete BUSCO scores than the gtf above  
   
 **Scripts used are as follows:** 
   
