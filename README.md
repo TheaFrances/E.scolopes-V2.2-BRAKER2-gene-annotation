@@ -9,6 +9,10 @@ eupsc_models_v2.2_cds.fa #Coding sequence file
 eupsc_models_v2.2_prot.fa #Protein sequence file  
 eupsc_models_v2.2_interproscan.tsv #Protein annotation  
 eupsc_models_v2.2.tags.gtf #Same gene annotation gtf as eupsc_models_v2.2.gtf but with explicit exon lines
+
+Information on column headers for eupsc_models_v2.2.gtf and eupsc_models_v2.2.tags.gtf can be found here: <https://www.ensembl.org/info/website/upload/gff.html>
+
+Information on column headers for eupsc_models_v2.2_interproscan.tsv can be found here: <https://interproscan-docs.readthedocs.io/en/latest/OutputFormats.html>
   
 **List of commands used to generate the annotation can be found in these files:**  
 1. Iso-Seq processing and mapping  
