@@ -1,6 +1,6 @@
 **Euprymna scolopes gene annotation for V2 genome (after *Sci Data* revision)**  
 
-This repo contains the gene annotation (new BRAKER2 models, combined with some genes from Belcaid *et al*. 2019) for the Hawaiian bobtail squid, *Euprymna scolopes* genome (Schmidbaur *et al.*, 2022). It is part of the following manuscript, in revision at *Scientific Data*: Towards a comprehensive gene annotation for the Hawaiian bobtail squid, *Euprymna scolopes*. Thea F. Rogers, Gözde Yalçın, John Briseno, Nidhi Vijayan, Spencer V. Nyholm, Oleg Simakov.  
+This repo contains the gene annotation (new BRAKER2 models, combined with some genes from Belcaid *et al*. 2019) for the Hawaiian bobtail squid, *Euprymna scolopes* genome (Schmidbaur *et al.*, 2022). It is part of the following manuscript, in press at *Scientific Data*: Towards a comprehensive gene annotation for the Hawaiian bobtail squid, *Euprymna scolopes*. Thea F. Rogers, Gözde Yalçın, John Briseno, Nidhi Vijayan, Spencer V. Nyholm, Oleg Simakov.  
   
 **The annotation files are as follows:**  
   
