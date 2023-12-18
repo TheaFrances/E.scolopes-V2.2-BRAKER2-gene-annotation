@@ -73,3 +73,7 @@
 	eupsc_models_v2.2_prot.fa
 
 	eupsc_models_v2.2_interproscan.tsv
+
+#Add exon and CDS lines to all genes in gtf
+
+	perl AddTransGeneLines.pl  eupsc_models_v2.2.gtf >  eupsc_models_v2.2.tags.gtf
