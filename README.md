@@ -29,7 +29,7 @@ tsebra_withGushr_longread.gtf #Do not use as gene annotation file, has less comp
 braker2_eupsc_isoseq_rnaseq_prot.sh #BRAKER2 SLURM script 1 for making gene models with RNA-seq, Iso-Seq from  E. scolopes and protein files from other species  
 braker2_eupsc_isoseq_rnaseq_utron.sh #BRAKER2 SLURM script 2 for adding UTRs to the output of the first BRAKER2 script above  
 convertBraker2Gff.pl #Script for formatting BRAKER2 output gtf  
-obtainBelcaidGeneList3.pl #Script for creating non-overlapping (more than 75% of exons unique) and multi-exon Belcaid genes  
+obtainBelcaidGeneList3.pl #Script for creating non-overlapping (more than 75% of exons unique) and multi-exon Belcaid et al. (2019) genes  
 countExonPerGene.pl #Count number of multi- and single-exon genes that are annotated and unannotated in Interproscan  
 
 
