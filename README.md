@@ -17,7 +17,7 @@ Information on column headers for eupsc_models_v2.2_interproscan.tsv can be foun
 **List of commands used to generate the annotation can be found in these files:**  
 1. Iso-Seq processing and mapping  
 2. Run BRAKER2, format output and run BUSCO  
-3. Add Belcaid models missed in BRAKER, run BUSCO and Interproscan and count orthologs  
+3. Add Belcaid models missed in BRAKER, run BUSCO and Interproscan, count orthologs and format annotation  
   
 TSEBRA was also run to select the best genes from Iso-Seq data and BRAKER2 models as suggested by reviewer 2. However, this decreased BUSCO completeness scores so was not used as the final annotation. **The gtf output from TSEBRA and commands run (for reviewers only) can be found here**:  
 
