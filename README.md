@@ -2,6 +2,8 @@
 
 This repo contains the gene annotation (new BRAKER2 models, combined with some genes from Belcaid *et al*. 2019) for the Hawaiian bobtail squid, *Euprymna scolopes* genome (Schmidbaur *et al.*, 2022). It is published in the following manuscript: Rogers, T.F., Yalçın, G., Briseno, J., Vijayan, N., Nyholm, S. V. & Simakov, O.  Gene modelling and annotation for the Hawaiian bobtail squid, *Euprymna scolopes*. *Sci Data* 11, 40 (2024). https://doi.org/10.1038/s41597-023-02903-8
 
+The corresponding genome assembly can be found here: https://metazoa.csb.univie.ac.at/data/v2/ or on NCBI here: https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_024364805.1/
+
 **The annotation files are as follows:**  
   
 eupsc_models_v2.2.gtf #Gene annotation GTF  
@@ -9,6 +11,7 @@ eupsc_models_v2.2_cds.fa #Coding sequence file
 eupsc_models_v2.2_prot.fa #Protein sequence file  
 eupsc_models_v2.2_interproscan.tsv #Protein annotation  
 eupsc_models_v2.2.tags.gtf #Same gene annotation gtf as eupsc_models_v2.2.gtf but with explicit exon lines
+eupsc_models_v2.2.tags.ncbi.gtf #Same as eupsc_models_v2.2.tags.gtf but with chromosome/scaffold names that match the genome assembly on NCBI
 
 Information on column headers for eupsc_models_v2.2.gtf and eupsc_models_v2.2.tags.gtf can be found here: <https://www.ensembl.org/info/website/upload/gff.html>
 
