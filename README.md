@@ -4,6 +4,8 @@ This repo contains the gene annotation (new BRAKER2 models, combined with some g
 
 The corresponding genome assembly can be found here: https://metazoa.csb.univie.ac.at/data/v2/ or on NCBI here: https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_024364805.1/
 
+The raw, demultiplexed PacBio Iso-Seq data underlying these analyses have been deposited in the NCBI Sequence Read Archive under SRP449515, here: https://www.ncbi.nlm.nih.gov/sra/?term=SRP449515
+
 **The annotation files are as follows:**  
   
 eupsc_models_v2.2.gtf #Gene annotation GTF  
